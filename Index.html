@@ -1,0 +1,104 @@
+
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI Demoportal för Byggföretag</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f9f9f9;
+      padding: 40px;
+      color: #333;
+    }
+    h1, h2 {
+      text-align: center;
+    }
+    .section {
+      background: white;
+      padding: 25px;
+      margin: 20px auto;
+      max-width: 800px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      border-radius: 8px;
+    }
+    input, textarea, button {
+      width: 100%;
+      margin: 8px 0;
+      padding: 10px;
+      font-size: 1em;
+    }
+    .output {
+      background: #eef;
+      padding: 15px;
+      white-space: pre-wrap;
+      border-radius: 6px;
+      margin-top: 10px;
+    }
+    iframe {
+      width: 100%;
+      height: 500px;
+      border: none;
+      border-radius: 8px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Demo: AI-lösningar för Byggföretag</h1>
+
+  <div class="section">
+    <h2>1. Offertgenerator</h2>
+    <label>Typ av jobb:</label>
+    <input type="text" id="jobb" placeholder="Ex: Badrumsrenovering">
+    <label>Storlek (kvm):</label>
+    <input type="number" id="storlek" placeholder="Ex: 6">
+    <label>Plats:</label>
+    <input type="text" id="plats" placeholder="Ex: Nacka">
+    <button onclick="genereraOffert()">Skapa offert</button>
+    <div id="offert" class="output"></div>
+  </div>
+
+  <div class="section">
+    <h2>2. Försäljningsanalys (exempelsvar)</h2>
+    <p><strong>Sammanfattning:</strong></p>
+    <div class="output">
+      - Mest sålda tjänst: Badrumsrenovering (46% av intäkt)
+      - Starkt månad: Mars (120 000 kr)
+      - Svagt: Januari (38 000 kr)
+      - Rekommendation: Erbjud kampanj Jan-Feb. Lyft altanbyggen på våren.
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>3. Kundchatt med AI</h2>
+    <p><em>Testa att fråga: "Vad kostar ett badrum?" eller "Jobbar ni i Nacka?"</em></p>
+    <iframe src="https://www.chatbase.co/chatbot-embed/your-bot-id-here"></iframe>
+  </div>
+
+  <script>
+    function genereraOffert() {
+      const jobb = document.getElementById("jobb").value;
+      const storlek = document.getElementById("storlek").value;
+      const plats = document.getElementById("plats").value;
+      const offertText = `
+Offert - ${jobb} i ${plats}
+
+Vi erbjuder komplett ${jobb.toLowerCase()} på ${storlek} kvm.
+
+Inkluderar:
+- Rivning och bortforsling
+- Tätskikt enligt BKR
+- Kakel/klinker, el & VVS
+- Montering av inredning
+
+Tidsåtgång: ca 10 arbetsdagar
+Pris (inkl ROT): från ${3000 * storlek} kr
+
+Vänliga hälsningar,
+Bygg & Fix AB`;
+      document.getElementById("offert").innerText = offertText;
+    }
+  </script>
+</body>
+</html>
